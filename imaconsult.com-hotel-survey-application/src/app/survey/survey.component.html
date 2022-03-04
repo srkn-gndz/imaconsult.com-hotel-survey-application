@@ -1,0 +1,54 @@
+<mat-toolbar color="primary">
+    <span>My Hotel</span>
+    <span class="example-spacer"></span>
+    <button mat-button routerLink='/'>Home</button>
+</mat-toolbar>
+
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>MY HOTEL</mat-card-title>
+        <mat-card-subtitle>Survey 24</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+        <ng-container *ngFor="let item of this.survey.survey_lines; let i = index">
+            <ng-container *ngIf="item.question_type == 'boolean'">
+                <p>{{item.question}}</p>
+                <mat-radio-group [(ngModel)]="this.answers[i]" aria-label="Select an option" class="example-radio-group">
+                    <mat-radio-button class="example-radio-button" value="10">Yes</mat-radio-button>
+                    <mat-radio-button class="example-radio-button" value="1">No</mat-radio-button>
+                </mat-radio-group>
+            </ng-container>
+
+            <ng-container *ngIf="item.question_type == 'smile'">
+                <p>{{item.question}}</p>
+                <mat-radio-group [(ngModel)]="this.answers[i]" aria-label="Select an option" class="example-radio-group">
+                    <mat-radio-button class="example-radio-button" value="2">I am not happy at all</mat-radio-button>
+                    <mat-radio-button class="example-radio-button" value="4">I am not satisfied</mat-radio-button>
+                    <mat-radio-button class="example-radio-button" value="6">Mediocre</mat-radio-button>
+                    <mat-radio-button class="example-radio-button" value="8">I am satisfied</mat-radio-button>
+                    <mat-radio-button class="example-radio-button" value="10">I am very pleased</mat-radio-button>
+                </mat-radio-group>
+            </ng-container>
+
+            <ng-container *ngIf="item.question_type == 'nps'">
+                <p>{{item.question}}</p>
+                <mat-radio-group [(ngModel)]="this.answers[i]" aria-label="Select an option" class="example-radio-group">
+                    <mat-radio-button class="example-radio-button" value="1">1</mat-radio-button>
+                    <mat-radio-button class="example-radio-button" value="2">2</mat-radio-button>
+                    <mat-radio-button class="example-radio-button" value="3">3</mat-radio-button>
+                    <mat-radio-button class="example-radio-button" value="4">4</mat-radio-button>
+                    <mat-radio-button class="example-radio-button" value="5">5</mat-radio-button>
+                    <mat-radio-button class="example-radio-button" value="6">6</mat-radio-button>
+                    <mat-radio-button class="example-radio-button" value="7">7</mat-radio-button>
+                    <mat-radio-button class="example-radio-button" value="8">8</mat-radio-button>
+                    <mat-radio-button class="example-radio-button" value="9">9</mat-radio-button>
+                    <mat-radio-button class="example-radio-button" value="10">10</mat-radio-button>
+                </mat-radio-group>
+            </ng-container> 
+        </ng-container>
+    </mat-card-content>
+    <mat-card-actions fxLayoutAlign="center end">
+        <button mat-raised-button color="warn" routerLink='/guest-detail'>Cancel</button>
+        <button mat-raised-button color="primary" (click)="send()">Send</button>
+    </mat-card-actions>
+</mat-card>

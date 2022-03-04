@@ -1,0 +1,19 @@
+<mat-toolbar color="primary">
+    <span>My Hotel</span>
+    <span class="example-spacer"></span>
+    <button mat-button routerLink='/survey'>Survey</button>
+</mat-toolbar>
+
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>MY HOTEL</mat-card-title>
+        <mat-card-subtitle>Guest Detail</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+        <mat-list >
+            <mat-list-item *ngFor="let item of this.userService.user_me | keyvalue">
+                <p *ngIf="item.key != 'token_val'"><b>{{item.key}}</b> : <span>{{item.value}}</span></p>
+            </mat-list-item>
+        </mat-list>
+    </mat-card-content>
+</mat-card>

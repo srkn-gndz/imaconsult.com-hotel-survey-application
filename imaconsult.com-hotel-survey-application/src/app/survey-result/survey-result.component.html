@@ -1,0 +1,16 @@
+<mat-toolbar color="primary">
+    <span>My Hotel</span>
+    <span class="example-spacer"></span>
+    <button mat-button routerLink='/'>Home</button>
+</mat-toolbar>
+
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>MY HOTEL</mat-card-title>
+        <mat-card-subtitle>Survey 24 Result</mat-card-subtitle>
+    </mat-card-header>
+        <p *ngIf="result_message != ''">{{result_message}}</p>
+        <a *ngIf="href_a != ''" [attr.href]="href_a">click</a>
+    <mat-card-content>
+    </mat-card-content>
+</mat-card>
