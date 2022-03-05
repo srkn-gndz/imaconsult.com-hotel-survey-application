@@ -53,7 +53,9 @@ export class SurveyComponent implements OnInit {
       element.answer_numeric = parseInt(this.answers[index])
       element.profile_id = this.userService.user.id;
       element.survey_line_id = element.id;
-
+      delete element.id;
+      delete element.created_at;
+      delete element.updated_at;
       this.userService.survey_answers.survey_answers.push(element);
     });
 

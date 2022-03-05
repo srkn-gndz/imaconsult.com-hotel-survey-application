@@ -10,7 +10,9 @@
         <mat-card-subtitle>Survey 24 Result</mat-card-subtitle>
     </mat-card-header>
         <p *ngIf="result_message != ''">{{result_message}}</p>
-        <a *ngIf="href_a != ''" [attr.href]="href_a">click</a>
+        <ng-container *ngIf="href_a.length > 0">
+            <a *ngFor="let a_item of href_a; let i = index" [attr.href]="a_item">click</a>
+        </ng-container>
     <mat-card-content>
     </mat-card-content>
 </mat-card>
