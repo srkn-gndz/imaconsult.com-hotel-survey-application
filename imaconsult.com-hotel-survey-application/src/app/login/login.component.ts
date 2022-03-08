@@ -31,6 +31,7 @@ export class LoginComponent implements OnInit {
         })
         .subscribe(response => {
           this.userService.user = response.body;
+          localStorage.setItem('token', JSON.stringify({username: this.user_name, password: this.user_password, hotel_id: parseInt(this.hotel_id)}))
           this.route.navigate(['guest-detail'])
         });
     }

@@ -1,5 +1,6 @@
 <mat-toolbar color="primary">
     <span>My Hotel</span>
     <span class="example-spacer"></span>
-    <button mat-button routerLink='/login'>Login</button>
-</mat-toolbar>
+    <button *ngIf= "!this.userService.is_user_logged" mat-button routerLink='/login'>Login</button>
+    <button *ngIf="this.userService.is_user_logged" mat-button routerLink='/guest-detail'>Guest Detail</button>
+</mat-toolbar> 

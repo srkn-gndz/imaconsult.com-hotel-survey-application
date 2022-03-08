@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -27,7 +27,19 @@ import { SurveyComponent } from './survey/survey.component';
 import { TokenInterceptor } from './services/token.interceptor';
 import { SurveyResultComponent } from './survey-result/survey-result.component';
 
-
+function appInitializer(
+  apiService: UserService,
+) {
+  return async () => {
+    return new Promise<void>(async (resolve) => {
+      apiService.appInitialize().then(
+        response => {
+          return response.subscribe().add(resolve());
+        }
+      )
+    });
+  };
+}
 
 @NgModule({
   declarations: [
@@ -60,7 +72,14 @@ import { SurveyResultComponent } from './survey-result/survey-result.component';
     provide: HTTP_INTERCEPTORS,
     useClass: TokenInterceptor,
     multi: true
-  }],
+  },
+  {
+    provide: APP_INITIALIZER,
+    useFactory: appInitializer,
+    multi: true,
+    deps: [UserService],
+  }
+],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
